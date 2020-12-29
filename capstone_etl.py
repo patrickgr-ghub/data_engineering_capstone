@@ -12,7 +12,7 @@ from pyspark.sql.types import IntegerType
 # read config file variables (VALIDATED & COMPLETE)
 
 config = configparser.ConfigParser()
-config.read('dl.cfg')
+config.read('dl_public.cfg')
 
 
 # authenticate using environment variables (VALIDATED & COMPLETE)
