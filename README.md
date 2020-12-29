@@ -118,6 +118,39 @@ The following steps detail the data discovery that was used to produce the final
 > External Link to View Star Schema       
 > http://na-sjdemo1.marketo.com/rs/786-GZR-035/images/Capstone_i94_Analytics_Star_Schema.png
 
+#### 1.4.2 Data Model
+
+To deliver a simple-to-use Analytics Repository, a Relational Data Model was selected that uses primary keys that link to foreign keys within the Star Schema. To produce this schema, a series of joins were used within the ETL process to make it easy for Analytics Users to work mainly from primary keys and occassionally a primary key plus a secondary key. The i94_travel_details_fact table houses the majority of the keys that are then easily related to the dimension tables.
+
+This data model was selected for the ease of use to end users, particularly after the development of the simplified primary key structure as well as its extensibility over time to append additional data sources leverage established keys, paricularly the location keys. For example, analytics users may want to add insights around weath and economics based on country, state or city over time - using the same process, data engineers could produce an "economics" dimension table that links to the main i94_visit_details_fact table.
+
+**Primary Keys include:**
+
+| Table                            |      Field Name      |  Data Type  |                  Description                 |
+| :---                             |        :----:        |    :----:   |                                         ---: |
+| i94_visit_details_fact           |        i94rec        |   Integer   |  Visit Details Record ID                     |
+| temperatures_dim                 |    temperature_id    |   Bigint    |  Temperatures Record ID                      |
+| state_demographics_dim           |    i94_state_code    |   Varchar   |  Location Code ID for State, i.e. "GA"       |
+| ethnicity_by_state_dim           |    i94_state_code    |   Varchar   |  Location Code ID for State, i.e. "GA"       |
+| us_airport_size_dim              |    i94_port_code     |   Varchar   |  Location Code ID for City, i.e. "ORL"       |
+| location_codes_dim               |   location_code_id   |   Integer   |  Master Location Code                        |
+| travel_mode_dim                  |   travel_mode_code   |   Varchar   |  Master Travel Mode Code                     |
+| travel_purpose_dim               |  travel_purpose_code |   Varchar   |  Master Travel Purpose Code                  |
+| visa_type_codes_dim              |       visa_code      |   Varchar   |  Master Visa Type Code                       |
+
+With Location Keys being used for a significant portion of the analytics associations, the location_codes_dim is particularly important for relating location keys to location data, such as Country, State, and City.
+
+**Location Keys Include:**
+
+| Field Name                |  Data Type   |    Key Type    |                      Description                      |
+| :---                      |    :----:    |     :----:     |                                                  ---: |
+| location_code_id          |    Integer   |   Primary Key  |  Master Location Code                                 |
+| country_code              |    Varchar   |   Foreign Key  |  Country Location Code                                |
+| country                   |    Varchar   |       n/a      |  Full Name of Country                                 |
+| state_code                |    Varchar   |   Foreign Key  |  State Location Code                                  |
+| city                      |    Varchar   |       n/a      |  City Location Name                                   |
+| state                     |    Varchar   |       n/a      |  Full State Name                                      |
+
 
 #### 1.5 Gather Data 
 
