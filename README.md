@@ -108,7 +108,7 @@ And Located within the following directory path: "capstone/analytics_keys/
     G) Review of delivered information within Redshift for a final validation of delivered results
     
     
-#### 1.4 Targeted Solution
+#### 1.4.1 Targeted Solution
 
 The ultimate outcome of the project will be a star schema analytics database that is easy for analytics users to query. The database will relate through a central Fact Table of i94 Visit Details and will need to link to Dimension Tables using record keys to make analytics queries simple to non-engineering resources and ultimately save any future need for transforming information in order to link disparate data sets.
 
@@ -120,7 +120,7 @@ The following steps detail the data discovery that was used to produce the final
 
 #### 1.4.2 Data Model
 
-To deliver a simple-to-use Analytics Repository, a Relational Data Model was selected that uses primary keys that link to foreign keys within the Star Schema. To produce this schema, a series of joins were used within the ETL process to make it easy for Analytics Users to work mainly from primary keys and occassionally a primary key plus a secondary key. The i94_travel_details_fact table houses the majority of the keys that are then easily related to the dimension tables.
+To deliver a simple-to-use Analytics Repository that is accessible through Amazon Redshift, a Relational Data Model was selected that uses primary keys that link to foreign keys within the Star Schema. To produce this schema, a series of joins were used within the ETL process to make it easy for Analytics Users to work mainly from primary keys and occassionally a primary key plus a secondary key. The i94_travel_details_fact table houses the majority of the keys that are then easily related to the dimension tables.
 
 This data model was selected for the ease of use to end users, particularly after the development of the simplified primary key structure as well as its extensibility over time to append additional data sources leverage established keys, paricularly the location keys. For example, analytics users may want to add insights around weath and economics based on country, state or city over time - using the same process, data engineers could produce an "economics" dimension table that links to the main i94_visit_details_fact table.
 
