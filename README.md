@@ -151,6 +151,7 @@ With Location Keys being used for a significant portion of the analytics associa
 | city                      |    Varchar   |       n/a      |  City Location Name                                   |
 | state                     |    Varchar   |       n/a      |  Full State Name                                      |
 
+For development and processing of the ETL files, a No-SQL data model was used to process Big Data through Pyspark. This data model was selected for it's ease of use when analyzing, wrangling and processing disparate data from different sources. Use of "Schema-on-read" made it easier to develop and link together resources that varied widely in their formating and structure.
 
 #### 1.5 Gather Data 
 
